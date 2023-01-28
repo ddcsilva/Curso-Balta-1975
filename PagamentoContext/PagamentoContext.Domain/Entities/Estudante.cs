@@ -1,33 +1,27 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using PagamentoContext.Domain.ValueObjects;
+using PagamentoContext.Shared.Entities;
 
-namespace PagamentoContext.Domain.Entidades
+namespace PagamentoContext.Domain.Entities
 {
-    public class Estudante
+    public class Estudante : BaseEntity
     {
         private IList<Assinatura> _assinaturas;
 
-        public Estudante(string nome, string sobrenome, string documento, string email)
+        public Estudante(NomeCompleto nomeCompleto, string sobrenome, Documento documento, Email email)
         {
-            Nome = nome;
-            Sobrenome = sobrenome;
+            NomeCompleto = nomeCompleto;
             Documento = documento;
             Email = email;
 
             _assinaturas = new List<Assinatura>();
-
-            if (nome.Length == 0)
-            {
-                throw new Exception("Nome inválido!");
-            }
         }
 
-        public string Nome { get; private set; }
-        public string Sobrenome { get; private set; }
-        public string Documento { get; private set; }
-        public string Email { get; private set; }
-        public string Endereco { get; private set; }
+        public NomeCompleto NomeCompleto { get; set; }
+        public Documento Documento { get; private set; }
+        public Email Email { get; private set; }
+        public Endereco Endereco { get; private set; }
         public IReadOnlyCollection<Assinatura> Assinaturas { get => _assinaturas.ToArray(); }
 
         public void AdicionarAssinatura(Assinatura assinatura)

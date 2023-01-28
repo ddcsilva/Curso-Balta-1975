@@ -1,5 +1,6 @@
 using System;
-using PagamentoContext.Domain.Entidades;
+using PagamentoContext.Domain.Entities;
+using PagamentoContext.Domain.ValueObjects;
 
 public class PagamentoPayPal : Pagamento
 {
@@ -9,9 +10,9 @@ public class PagamentoPayPal : Pagamento
                            decimal total, 
                            decimal totalPago, 
                            string proprietario, 
-                           string documento, 
-                           string endereco, 
-                           string email) : base (dataPagamento, 
+                           Documento documento, 
+                           Endereco endereco, 
+                           Email email) : base (dataPagamento, 
                                                  dataExpiracao, 
                                                  total, 
                                                  totalPago, 

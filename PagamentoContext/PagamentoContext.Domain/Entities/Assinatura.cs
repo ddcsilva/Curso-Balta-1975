@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PagamentoContext.Domain.Entidades
+namespace PagamentoContext.Domain.Entities
 {
     public class Assinatura
     {
