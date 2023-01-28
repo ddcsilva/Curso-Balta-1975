@@ -1,3 +1,4 @@
+using PagamentoContext.Domain.Contracts;
 using PagamentoContext.Shared.ValueObjects;
 
 namespace PagamentoContext.Domain.ValueObjects
@@ -6,9 +7,11 @@ namespace PagamentoContext.Domain.ValueObjects
     {
         public Email(string endereco)
         {
-            this.endereco = endereco;
+            this.Endereco = endereco;
+
+            AddNotifications(new CriarEmailContract(this));
         }
 
-        public string endereco { get; set; }
+        public string Endereco { get; set; }
     }
 }

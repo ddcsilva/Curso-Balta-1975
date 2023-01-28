@@ -1,3 +1,4 @@
+using PagamentoContext.Domain.Contracts;
 using PagamentoContext.Domain.Enums;
 using PagamentoContext.Shared.ValueObjects;
 
@@ -5,13 +6,15 @@ namespace PagamentoContext.Domain.ValueObjects
 {
     public class Documento : ValueObject
     {
-        public Documento(string nome, TipoDocumentoEnum tipoDocumento)
+        public Documento(string numero, TipoDocumentoEnum tipoDocumento)
         {
-            Nome = nome;
+            Numero = numero;
             TipoDocumento = tipoDocumento;
+
+            AddNotifications(new CriarDocumentoContract(this));
         }
 
-        public string Nome { get; private set; }
+        public string Numero { get; private set; }
         public TipoDocumentoEnum TipoDocumento { get; private set; }
     }
 }

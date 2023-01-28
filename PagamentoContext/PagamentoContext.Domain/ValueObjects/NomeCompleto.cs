@@ -1,3 +1,4 @@
+using PagamentoContext.Domain.Contracts;
 using PagamentoContext.Shared.ValueObjects;
 
 namespace PagamentoContext.Domain.ValueObjects
@@ -9,8 +10,7 @@ namespace PagamentoContext.Domain.ValueObjects
             Nome = nome;
             Sobrenome = sobrenome;
 
-            if (string.IsNullOrEmpty(Nome)) 
-                AddNotification("NomeCompleto.Nome", "Nome inválido");
+            AddNotifications(new CriarNomeCompletoContract(this));
         }
 
         public string Nome { get; private set; }

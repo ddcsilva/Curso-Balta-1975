@@ -1,11 +1,13 @@
 using System;
+using PagamentoContext.Domain.Contracts;
 using PagamentoContext.Domain.ValueObjects;
+using PagamentoContext.Shared.Entities;
 
 namespace PagamentoContext.Domain.Entities
 {
-    public abstract class Pagamento
+    public abstract class Pagamento : BaseEntity
     {
-        protected Pagamento(DateTime dataPagamento, DateTime dataExpiracao, decimal total, decimal totalPago, string proprietario, Documento documento, Endereco endereco, Email email)
+        protected Pagamento(DateTime dataPagamento, DateTime dataExpiracao, decimal total, decimal totalPago, string proprietario, Documento documento, Endereco endereco, Endereco email)
         {
             Numero = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10).ToUpper();
             DataPagamento = dataPagamento;
@@ -16,6 +18,8 @@ namespace PagamentoContext.Domain.Entities
             Documento = documento;
             Endereco = endereco;
             Email = email;
+
+            AddNotifications(new CriarPagamentoContract(this));
         }
 
         public string Numero { get; private set; }
@@ -26,6 +30,6 @@ namespace PagamentoContext.Domain.Entities
         public string Proprietario { get; private set; }
         public Documento Documento { get; private set; }
         public Endereco Endereco { get; private set; }
-        public Email Email { get; private set; }
+        public Endereco Email { get; private set; }
     }
 }

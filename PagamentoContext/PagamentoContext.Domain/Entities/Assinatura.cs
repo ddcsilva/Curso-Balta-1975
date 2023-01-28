@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PagamentoContext.Domain.Contracts;
+using PagamentoContext.Shared.Entities;
 
 namespace PagamentoContext.Domain.Entities
 {
-    public class Assinatura
+    public class Assinatura : BaseEntity
     {
         private IList<Pagamento> _pagamentos;
 
@@ -26,6 +28,8 @@ namespace PagamentoContext.Domain.Entities
 
         public void AdicionarPagamento(Pagamento pagamento)
         {
+            AddNotifications(new AdicionarPagamentoContract(pagamento));
+            
             _pagamentos.Add(pagamento);
         }
 

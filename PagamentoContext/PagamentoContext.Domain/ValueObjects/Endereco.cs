@@ -1,3 +1,4 @@
+using PagamentoContext.Domain.Contracts;
 using PagamentoContext.Shared.ValueObjects;
 
 namespace PagamentoContext.Domain.ValueObjects
@@ -13,6 +14,8 @@ namespace PagamentoContext.Domain.ValueObjects
             Estado = estado;
             Pais = pais;
             Cep = cep;
+
+            AddNotifications(new CriarEnderecoContract(this));
         }
 
         public string Rua { get; private set; }

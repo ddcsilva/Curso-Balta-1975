@@ -10,7 +10,7 @@ namespace PagamentoContext.Domain.Entities
     {
         private IList<Assinatura> _assinaturas;
 
-        public Estudante(NomeCompleto nomeCompleto, string sobrenome, Documento documento, Email email)
+        public Estudante(NomeCompleto nomeCompleto, string sobrenome, Documento documento, Endereco email)
         {
             NomeCompleto = nomeCompleto;
             Documento = documento;
@@ -23,7 +23,7 @@ namespace PagamentoContext.Domain.Entities
 
         public NomeCompleto NomeCompleto { get; set; }
         public Documento Documento { get; private set; }
-        public Email Email { get; private set; }
+        public Endereco Email { get; private set; }
         public Endereco Endereco { get; private set; }
         public IReadOnlyCollection<Assinatura> Assinaturas { get => _assinaturas.ToArray(); }
 
@@ -32,12 +32,16 @@ namespace PagamentoContext.Domain.Entities
             // Se já tiver uma assinatura ativa, cancela
 
             // Cancela todas as outras assinaturas e coloca esta como principal
-            foreach (var item in Assinaturas)
+            var possuiAssinaturaAtiva = false;
+
+            foreach (var item in _assinaturas)
             {
-                item.Ativar();
+                if (item.Ativo)
+                    possuiAssinaturaAtiva = true;
             }
 
-            _assinaturas.Add(assinatura);
+            if (possuiAssinaturaAtiva)
+                AddNotification("Estudante.Assinaturas", "Você já tem uma assinatura ativa");
         }
     }
 }
