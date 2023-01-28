@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using PagamentoContext.Domain.ValueObjects;
@@ -16,6 +17,8 @@ namespace PagamentoContext.Domain.Entities
             Email = email;
 
             _assinaturas = new List<Assinatura>();
+
+            AddNotifications(nomeCompleto, documento, email);
         }
 
         public NomeCompleto NomeCompleto { get; set; }

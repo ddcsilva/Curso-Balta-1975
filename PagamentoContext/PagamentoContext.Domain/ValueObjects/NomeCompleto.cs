@@ -8,6 +8,9 @@ namespace PagamentoContext.Domain.ValueObjects
         {
             Nome = nome;
             Sobrenome = sobrenome;
+
+            if (string.IsNullOrEmpty(Nome)) 
+                AddNotification("NomeCompleto.Nome", "Nome inválido");
         }
 
         public string Nome { get; private set; }
