@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PagamentoContext.Domain.Enums;
 using PagamentoContext.Domain.ValueObjects;
 
-namespace PagamentoContext.Tests
+namespace PagamentoContext.Tests.ValueObjects
 {
     [TestClass]
     public class DocumentoTests

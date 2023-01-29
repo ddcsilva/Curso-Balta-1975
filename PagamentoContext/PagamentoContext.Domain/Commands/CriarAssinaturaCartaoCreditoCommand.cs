@@ -24,7 +24,7 @@ namespace PagamentoContext.Domain.Commands
         public string Pagante { get; set; }
         public string DocumentoPagante { get; set; }
         public TipoDocumentoEnum TipoDocumentoPagante { get; set; }
-        public Email EmailPagante { get; set; }
+        public string EmailPagante { get; set; }
         public string Rua { get; set; }
         public string Numero { get; set; }
         public string Vizinhanca { get; set; }
