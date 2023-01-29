@@ -6,6 +6,11 @@ namespace PagamentoContext.Domain.Commands
 {
     public class CriarAssinaturaBoletoCommand
     {
+        public CriarAssinaturaBoletoCommand()
+        {
+
+        }
+
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
         public string Documento { get; set; }
