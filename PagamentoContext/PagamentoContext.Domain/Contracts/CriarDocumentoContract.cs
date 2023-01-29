@@ -17,7 +17,7 @@ namespace PagamentoContext.Domain.Contracts
             if (documento.TipoDocumento == TipoDocumentoEnum.CNPJ && documento.Numero.Length == 14)
                 return true;
 
-            if (documento.TipoDocumento == TipoDocumentoEnum.CNPJ && documento.Numero.Length == 11)
+            if (documento.TipoDocumento == TipoDocumentoEnum.CPF && documento.Numero.Length == 11)
                 return true;
             
             return false;

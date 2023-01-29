@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PagamentoContext.Domain.Contracts;
 using PagamentoContext.Domain.ValueObjects;
 using PagamentoContext.Shared.Entities;
 
@@ -10,7 +11,7 @@ namespace PagamentoContext.Domain.Entities
     {
         private IList<Assinatura> _assinaturas;
 
-        public Estudante(NomeCompleto nomeCompleto, string sobrenome, Documento documento, Endereco email)
+        public Estudante(NomeCompleto nomeCompleto, Documento documento, Email email)
         {
             NomeCompleto = nomeCompleto;
             Documento = documento;
@@ -23,15 +24,12 @@ namespace PagamentoContext.Domain.Entities
 
         public NomeCompleto NomeCompleto { get; set; }
         public Documento Documento { get; private set; }
-        public Endereco Email { get; private set; }
+        public Email Email { get; private set; }
         public Endereco Endereco { get; private set; }
         public IReadOnlyCollection<Assinatura> Assinaturas { get => _assinaturas.ToArray(); }
 
         public void AdicionarAssinatura(Assinatura assinatura)
         {
-            // Se já tiver uma assinatura ativa, cancela
-
-            // Cancela todas as outras assinaturas e coloca esta como principal
             var possuiAssinaturaAtiva = false;
 
             foreach (var item in _assinaturas)
@@ -40,8 +38,10 @@ namespace PagamentoContext.Domain.Entities
                     possuiAssinaturaAtiva = true;
             }
 
-            if (possuiAssinaturaAtiva)
-                AddNotification("Estudante.Assinaturas", "Você já tem uma assinatura ativa");
+            AddNotifications(new AdicionarAssinaturaContract(assinatura, possuiAssinaturaAtiva));
+
+            if (IsValid)
+                _assinaturas.Add(assinatura);
         }
     }
 }

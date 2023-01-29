@@ -14,7 +14,7 @@ public class PagamentoCartaoCredito : Pagamento
                                   string proprietario, 
                                   Documento documento, 
                                   Endereco endereco, 
-                                  Endereco email) : base (dataPagamento, 
+                                  Email email) : base (dataPagamento, 
                                                         dataExpiracao, 
                                                         total, 
                                                         totalPago, 
