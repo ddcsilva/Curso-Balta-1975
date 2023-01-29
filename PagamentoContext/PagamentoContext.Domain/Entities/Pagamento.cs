@@ -7,14 +7,14 @@ namespace PagamentoContext.Domain.Entities
 {
     public abstract class Pagamento : BaseEntity
     {
-        protected Pagamento(DateTime dataPagamento, DateTime dataExpiracao, decimal total, decimal totalPago, string proprietario, Documento documento, Endereco endereco, Email email)
+        protected Pagamento(DateTime dataPagamento, DateTime dataExpiracao, decimal total, decimal totalPago, string pagante, Documento documento, Endereco endereco, Email email)
         {
             Numero = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10).ToUpper();
             DataPagamento = dataPagamento;
             DataExpiracao = dataExpiracao;
             Total = total;
             TotalPago = totalPago;
-            Proprietario = proprietario;
+            Pagante = pagante;
             Documento = documento;
             Endereco = endereco;
             Email = email;
@@ -27,7 +27,7 @@ namespace PagamentoContext.Domain.Entities
         public DateTime DataExpiracao { get; private set; }
         public decimal Total { get; private set; }
         public decimal TotalPago { get; private set; }
-        public string Proprietario { get; private set; }
+        public string Pagante { get; private set; }
         public Documento Documento { get; private set; }
         public Endereco Endereco { get; private set; }
         public Email Email { get; private set; }

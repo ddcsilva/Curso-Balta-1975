@@ -12,6 +12,6 @@ namespace PagamentoContext.Domain.ValueObjects
             AddNotifications(new CriarEmailContract(this));
         }
 
-        public string Endereco { get; set; }
+        public string Endereco { get; private set; }
     }
 }
