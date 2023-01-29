@@ -1,10 +1,13 @@
 using System;
+using Flunt.Notifications;
+using Flunt.Validations;
 using PagamentoContext.Domain.Enums;
 using PagamentoContext.Domain.ValueObjects;
+using PagamentoContext.Shared.Commands;
 
 namespace PagamentoContext.Domain.Commands
 {
-    public class CriarAssinaturaCartaoCreditoommand
+    public class CriarAssinaturaCartaoCreditoCommand : Notifiable<Notification>, ICommand
     {
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
@@ -29,5 +32,15 @@ namespace PagamentoContext.Domain.Commands
         public string Estado { get; set; }
         public string Pais { get; set; }
         public string Cep { get; set; }
+
+        public void Validar()
+        {
+            AddNotifications(new Contract<CriarAssinaturaCartaoCreditoCommand>()
+                .Requires()
+                .IsGreaterOrEqualsThan(Nome, 3, "Nome", "Nome deve conter pelo menos 3 caracteres")
+                .IsGreaterOrEqualsThan(Sobrenome, 3, "Sobrenome", "Sobrenome deve conter pelo menos 3 caracteres")
+                .IsLowerOrEqualsThan(Nome, 40, "Nome", "Nome deve conter até 40 caracteres")            
+            );
+        }
     }
 }
