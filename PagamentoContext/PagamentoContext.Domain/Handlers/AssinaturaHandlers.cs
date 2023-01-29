@@ -32,11 +32,11 @@ namespace PagamentoContext.Domain.Handlers
             }
 
             // Verificar se Documento já está cadastrado
-            if (_repository.DocumentoExiste(command.Documento))
+            if (_repository.ExisteDocumento(command.Documento))
                 AddNotification("Documento", "Este CPF já está em uso");
 
             // Verificar se E-mail já está cadastrado
-            if (_repository.EmailExiste(command.Email))
+            if (_repository.ExisteEmail(command.Email))
                 AddNotification("Email", "Este E-mail já está em uso");
 
             // Gerar os VOs

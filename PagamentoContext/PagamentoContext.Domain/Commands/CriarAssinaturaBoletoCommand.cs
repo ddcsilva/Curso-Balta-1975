@@ -1,7 +1,7 @@
 using System;
 using Flunt.Notifications;
+using Flunt.Validations;
 using PagamentoContext.Domain.Enums;
-using PagamentoContext.Domain.ValueObjects;
 using PagamentoContext.Shared.Commands;
 
 namespace PagamentoContext.Domain.Commands
@@ -27,7 +27,7 @@ namespace PagamentoContext.Domain.Commands
         public string Pagante { get; set; }
         public string DocumentoPagante { get; set; }
         public TipoDocumentoEnum TipoDocumentoPagante { get; set; }
-        public Email EmailPagante { get; set; }
+        public string EmailPagante { get; set; }
         public string Rua { get; set; }
         public string Numero { get; set; }
         public string Vizinhanca { get; set; }
@@ -38,7 +38,11 @@ namespace PagamentoContext.Domain.Commands
 
         public void Validar()
         {
-            throw new NotImplementedException();
+            AddNotifications(new Contract<CriarAssinaturaBoletoCommand>()
+                .Requires()
+                .IsGreaterOrEqualsThan(Nome, 3, "NomeCompleto.Nome", "Nome deve conter pelo menos 3 caracteres")
+                .IsLowerOrEqualsThan(Nome, 40, "NomeCompleto.Nome", "Nome deve conter até 40 caracteres")                
+            );
         }
     }
 }

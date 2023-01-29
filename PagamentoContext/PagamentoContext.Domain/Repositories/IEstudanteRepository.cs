@@ -4,8 +4,8 @@ namespace PagamentoContext.Domain.Repositories
 {
     public interface IEstudanteRepository
     {
-        bool DocumentoExiste(string docuento);
-        bool EmailExiste(string docuento);
+        bool ExisteDocumento(string docuento);
+        bool ExisteEmail(string docuento);
 
         void CriarAssinatura(Estudante estudante);
     }
