@@ -1,10 +1,12 @@
 using System;
+using Flunt.Notifications;
 using PagamentoContext.Domain.Enums;
 using PagamentoContext.Domain.ValueObjects;
+using PagamentoContext.Shared.Commands;
 
 namespace PagamentoContext.Domain.Commands
 {
-    public class CriarAssinaturaBoletoCommand
+    public class CriarAssinaturaBoletoCommand : Notifiable<Notification>,  ICommand
     {
         public CriarAssinaturaBoletoCommand()
         {
@@ -33,5 +35,10 @@ namespace PagamentoContext.Domain.Commands
         public string Estado { get; set; }
         public string Pais { get; set; }
         public string Cep { get; set; }
+
+        public void Validar()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
